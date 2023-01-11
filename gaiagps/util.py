@@ -239,6 +239,7 @@ def make_tree(folders):
             'name': '/',
             'waypoints': {},
             'tracks': {},
+            'areas': {},
         },
     }
 
@@ -286,6 +287,9 @@ def resolve_tree(client, folder):
         folder['properties']['tracks'] = [
             t for t in client.list_objects('track')
             if t['folder'] == '']
+        folder['properties']['areas'] = [
+            a for a in client.list_objects('area')
+            if a['folder'] == '']
 
     for subfolder in folder.get('subfolders', {}).values():
         LOG.debug('Descending into %s' % subfolder['id'])
@@ -346,7 +350,9 @@ def pprint_folder(folder, indent=0, long=False):
         [('W', w) for w in title_sort(
             folder['properties']['waypoints'])] +
         [('T', t) for t in title_sort(
-            folder['properties']['tracks'])])
+            folder['properties']['tracks'])] +
+        [('A', a) for a in title_sort(
+            folder['properties']['areas'])])
 
     while children:
         char, child = children.pop(0)

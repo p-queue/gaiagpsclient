@@ -14,6 +14,7 @@ from gaiagps.shell import upload
 from gaiagps.shell import track
 from gaiagps.shell import folder
 from gaiagps.shell import waypoint
+from gaiagps.shell import area
 
 
 @contextlib.contextmanager
@@ -48,7 +49,7 @@ def main(args=None):
 
     command_classes = [waypoint.Waypoint, folder.Folder, command.Test,
                        command.Tree, track.Track, upload.Upload,
-                       photo.Photo]
+                       photo.Photo, area.Area]
     commands = {}
 
     if 'GAIAGPSCLIENTDEV' in os.environ:
